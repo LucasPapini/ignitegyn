@@ -2,10 +2,20 @@ import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
 
 import LogoSvg from "@assets/logo.svg";
 import BackgroundImg from "@assets/background.png";
+
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
 
+import { useNavigation } from "@react-navigation/native";
+
+
 export function SignUp() {
+  const navigation = useNavigation();
+
+  function handleReturnHome() {
+    navigation.goBack();
+  }
+  
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}
@@ -14,6 +24,7 @@ export function SignUp() {
       <VStack flex="1" bg="gray.700" px={5} pb={16}>
         <Image
           source={BackgroundImg}
+          defaultSource={BackgroundImg}
           alt="Pessoas treinando em uma bicicleta."
           resizeMode="contain"
           position="absolute"
@@ -49,7 +60,12 @@ export function SignUp() {
 
         <Button title="Criar e acessar" />
 
-        <Button title="Voltar" variant={"outline"} mt={"32"} />
+        <Button
+          title="Voltar"
+          variant={"outline"}
+          mt={"32"}
+          onPress={handleReturnHome}
+        />
       </VStack>
     </ScrollView>
   );
